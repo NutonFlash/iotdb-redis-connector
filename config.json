@@ -1,0 +1,37 @@
+{
+    "source": {
+        "redis": {
+            "api_url": "http://127.0.0.1:20802/api/data/current.do",
+            "user_key": "your_user_key"
+        },
+        "tags_file": "tagList.csv"
+    },
+    "destination": {
+        "iotdb": {
+            "host": "localhost",
+            "port": 6667,
+            "username": "root",
+            "password": "root",
+            "session_pool_size": 10
+        }
+    },
+    "processing": {
+        "fetcher": {
+            "interval_ms": 1000,
+            "timeout_ms": 10000
+        },
+        "writer": {
+            "pool_size": 5,
+            "batch_size": 500
+        },
+        "queue": {
+            "capacity": 10000
+        }
+    },
+    "retry": {
+        "initial_delay_ms": 1000,
+        "max_delay_ms": 60000,
+        "max_attempts": 5,
+        "backoff_multiplier": 2.0
+    }
+}
